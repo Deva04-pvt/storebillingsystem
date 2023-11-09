@@ -1404,8 +1404,8 @@ def CreateBillWindow(TreeviewName, LabelName):
         BillWindow.focus_force()
         BillWindow.title("Create Bill")
         BillWindow.config(bg=LoginPageTheme1)
-        window_width = 1920
-        window_height = 1080
+        window_width = 500
+        window_height = 570
         screen_width = BillWindow.winfo_screenwidth()
         screen_height = BillWindow.winfo_screenheight()
         xCoordinate = int(screen_width / 2 - window_width / 2)
@@ -1433,7 +1433,7 @@ def CreateBillWindow(TreeviewName, LabelName):
             box_size=10,
             border=4,
         )
-        qr.add_data(billstring)
+        qr.add_data(output)
         qr.make(fit=True)
 
         qr_img = qr.make_image(fill_color="black", back_color="white")
@@ -1444,7 +1444,7 @@ def CreateBillWindow(TreeviewName, LabelName):
         # Create a label to display the QR code in the parent window
         qr_label = Label(BillWindow, image=photo)
         qr_label.photo = photo  # To prevent it from being garbage collected
-        qr_label.place(x=300,y=150)
+        qr_label.place(x=100,y=150)
         ###################################
         CreateFinalBillButton = Button(BillWindow, text="Create", font=Font5, bg=LoginPageTheme1,
                                        activebackground=LoginPageTheme1,
@@ -1452,7 +1452,7 @@ def CreateBillWindow(TreeviewName, LabelName):
                                        command=lambda: CreateFinalBillButtonFunction(BillWindow,
                                                                                      CustomerNameEntry.get(),
                                                                                      TreeviewName, LabelName, output))
-        CreateFinalBillButton.place(x=185, y=455)
+        CreateFinalBillButton.place(x=200, y=455)
     else:
         messagebox.showerror("Bill", "Bill cannot be empty")
 
